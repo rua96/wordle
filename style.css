@@ -10,3 +10,9 @@ body{
     justify-content:center;
     align-items: center;
 }
+input{
+    height: 50px;
+    font-size: 3rem;
+    width: 50px;
+    text-align: center;
+}
