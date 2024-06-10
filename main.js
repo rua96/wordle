@@ -1,19 +1,29 @@
-let parola = "cream"
-let input1 = document.getElementById("input1");
-let input2 = document.getElementById("input2");
-let input3 = document.getElementById("input3");
-let input4 = document.getElementById("input4");
-let input5 = document.getElementById("input5");
-input1.addEventListener("input", (e) => updateValue(e,input1));
-input2.addEventListener("input", (e) => updateValue(e,input2));
-input3.addEventListener("input", (e) => updateValue(e,input3));
-input4.addEventListener("input", (e) => updateValue(e,input4));
-input5.addEventListener("input", (e) => updateValue(e,input5));
-
-function updateValue(event,input) {
-    input.value = event.target.value.slice(-1);
+let parola = "right"
+let wordInputArray = [
+    [input1,input2,input3,input4,input5],
+    [input6,input7,input8,input9,input10],
+    [input11,input12,input13,input14,input15],
+    [input16,input17,input18,input19,input20],
+    [input21,input22,input23,input24,input25]
+]
+function onInput(e) {
+    e.target.value = e.target.value.slice(-1);
 }
-function onClick() {
-        let word = input1.value + input2.value + input3.value + input5.value + input5.value;
-        console.log("word",word)
+function onSubmit(e,wordIndex) {
+    e.preventDefault();
+    console.log("onSìsubmit")
+        let word = wordInputArray[wordIndex];
+        for(let i=0; i< word.length; i++) {
+            if(word[i].value==parola[i])
+            {
+                word[i].style.backgroundColor = "green"
+            } 
+            else if(parola.includes(word[i].value))
+            {           
+                word[i].style.backgroundColor = "orange"                                            
+            }
+            else
+            {
+                 word[i].style.backgroundColor = "grey"}
+            }
 }
