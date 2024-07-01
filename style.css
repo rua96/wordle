@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(9, 27, 227);
+    background-color: rgb(83, 214, 219);
     height: 100vh;
 }
 .parent{
@@ -11,12 +11,13 @@ body{
     align-items: center;
 }
 input{
-    height: 50px;
-    font-size: 3rem;
-    width: 50px;
+    height: 80px;
+    font-size: 5rem;
+    width: 80px;
     text-align: center;
 }
 
 button {
     display: none;
 }
+

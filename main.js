@@ -1,4 +1,4 @@
-let parola = "right"
+let parola = ""
 let wordInputArray = [
     [input1,input2,input3,input4,input5],
     [input6,input7,input8,input9,input10],
@@ -17,15 +17,15 @@ if(event.key==='Backspace') {
 
 
 function onInput(e) {
-     if(e.inputType === 'deleteContentBackward') {
-        return;
-     } else {
-        if(e.target.nextElementSibling){
+    if (/^[a-zA-Z]+$/.test(e.target.value)) {
+        if (e.target.nextElementSibling) {
             e.target.nextElementSibling.focus();
         }
         e.target.value = e.target.value.slice(-1);
-     }    
-}
+    } else {
+        e.target.value="";
+    }
+  }
 
 function onSubmit(e,wordIndex) {
     e.preventDefault();
@@ -36,15 +36,15 @@ function onSubmit(e,wordIndex) {
         for(let i=0; i< word.length; i++) {
             if(word[i].value==parola[i])
             {
-                word[i].style.backgroundColor = "green"
+                word[i].style.backgroundColor = "rgb(69, 222, 128)"
             } 
             else if(parola.includes(word[i].value))
             {           
-                word[i].style.backgroundColor = "orange"                                            
+                word[i].style.backgroundColor = "rgb(219, 155, 81)"                                            
             }
             else
             {
-                 word[i].style.backgroundColor = "grey"
+                 word[i].style.backgroundColor = "rgb(166, 187, 188)"
             } word[i].disabled = true;
             }
             let nextLine = wordInputArray[wordIndex+1];
@@ -58,3 +58,8 @@ window.onload=()=> {
    wordInputArray[0][0].focus()
     };
 
+    fetch("words.json")
+    .then(response => response.json())
+    .then(data => {
+        parola = data[Math.floor(Math.random() * 100)]
+    });
