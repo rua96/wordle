@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+  </head>
+  <body>
+    <h1 class="wordle">WORDLE</h1>
+    <div class="parent">
+      <form class="InputContainer" onsubmit="onSubmit(event,0)">
+        <input type="text" id="input1" oninput="onInput(event)" />
+        <input type="text" id="input2" oninput="onInput(event)" />
+        <input type="text" id="input3" oninput="onInput(event)" />
+        <input type="text" id="input4" oninput="onInput(event)" />
+        <input type="text" id="input5" oninput="onInput(event)" />
+        <button id="button" type="submit"></button>
+      </form>
+      <form class="InputContainer" onsubmit="onSubmit(event,1)">
+        <input type="text" id="input6" oninput="onInput(event)" disabled />
+        <input type="text" id="input7" oninput="onInput(event)" disabled />
+        <input type="text" id="input8" oninput="onInput(event)" disabled />
+        <input type="text" id="input9" oninput="onInput(event)" disabled />
+        <input type="text" id="input10" oninput="onInput(event)" disabled />
+        <button id="button" type="submit"></button>
+      </form>
+      <form class="InputContainer" onsubmit="onSubmit(event,2)">
+        <input type="text" id="input11" oninput="onInput(event)" disabled />
+        <input type="text" id="input12" oninput="onInput(event)" disabled />
+        <input type="text" id="input13" oninput="onInput(event)" disabled />
+        <input type="text" id="input14" oninput="onInput(event)" disabled />
+        <input type="text" id="input15" oninput="onInput(event)" disabled />
+        <button id="button" type="submit"></button>
+      </form>
+      <form class="InputContainer" onsubmit="onSubmit(event,3)">
+        <input type="text" id="input16" oninput="onInput(event)" disabled />
+        <input type="text" id="input17" oninput="onInput(event)" disabled />
+        <input type="text" id="input18" oninput="onInput(event)" disabled />
+        <input type="text" id="input19" oninput="onInput(event)" disabled />
+        <input type="text" id="input20" oninput="onInput(event)" disabled />
+        <button id="button" type="submit"></button>
+      </form>
+      <form class="InputContainer" onsubmit="onSubmit(event,4)">
+        <input type="text" id="input21" oninput="onInput(event)" disabled />
+        <input type="text" id="input22" oninput="onInput(event)" disabled />
+        <input type="text" id="input23" oninput="onInput(event)" disabled />
+        <input type="text" id="input24" oninput="onInput(event)" disabled />
+        <input type="text" id="input25" oninput="onInput(event)" disabled />
+        <button id="button" type="submit"></button>
+      </form>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

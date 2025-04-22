@@ -1,0 +1,27 @@
+body {
+  background-color: rgb(5, 78, 80);
+  height: 100vh;
+}
+.wordle {
+  color: rgb(122, 216, 191);
+  font-size: 50px;
+  text-align: center;
+}
+.parent {
+  height: 100%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input {
+  height: 80px;
+  font-size: 5rem;
+  width: 80px;
+  text-align: center;
+}
+
+button {
+  display: none;
+}
