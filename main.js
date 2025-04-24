@@ -36,9 +36,10 @@ function onSubmit(e, wordIndex) {
     if (!word[i].value) {
       Toastify({
         text: "Inserisci tutte e 5 le lettere prima di inviare.",
-        duration: 5000,
+        duration: 1000,
         gravity: "top",
         position: "center",
+        className: "toastify-center",
         backgroundColor:
           "linear-gradient(to right,rgb(95, 114, 255),rgb(29, 245, 194))",
         stopOnFocus: true,
@@ -51,7 +52,7 @@ function onSubmit(e, wordIndex) {
   let allCorrect = true; // Flag per verificare se l'utente ha indovinato la parola
 
   // Controlla se la parola è corretta e cambia i colori
-  for (let i = 0; i < word.length; i++) {
+  /*for (let i = 0; i < word.length; i++) {
     if (guess[i] === parola[i]) {
       word[i].style.backgroundColor = "rgb(69, 222, 128)"; // Colore verde
     } else if (parola.includes(guess[i])) {
@@ -66,6 +67,45 @@ function onSubmit(e, wordIndex) {
       allCorrect = false;
     }
   }
+*/
+  // Conta le lettere nella parola segreta
+  let letterCount = {};
+  for (let i = 0; i < parola.length; i++) {
+    letterCount[parola[i]] = (letterCount[parola[i]] || 0) + 1;
+  }
+
+  // Primo passaggio: controlla esatte corrispondenze (verdi)
+  let statusArray = Array(5).fill("gray");
+  for (let i = 0; i < word.length; i++) {
+    if (guess[i] === parola[i]) {
+      statusArray[i] = "green";
+      letterCount[guess[i]]--;
+    }
+  }
+
+  // Secondo passaggio: controlla lettere giuste nella posizione sbagliata (gialle)
+  for (let i = 0; i < word.length; i++) {
+    if (statusArray[i] === "gray" && letterCount[guess[i]] > 0) {
+      statusArray[i] = "yellow";
+      letterCount[guess[i]]--;
+    }
+  }
+
+  // Applica i colori e disabilita input
+  for (let i = 0; i < word.length; i++) {
+    if (statusArray[i] === "green") {
+      word[i].style.backgroundColor = "rgb(69, 222, 128)";
+    } else if (statusArray[i] === "yellow") {
+      word[i].style.backgroundColor = "rgb(219, 155, 81)";
+    } else {
+      word[i].style.backgroundColor = "rgb(166, 187, 188)";
+    }
+    word[i].disabled = true;
+
+    if (statusArray[i] !== "green") {
+      allCorrect = false;
+    }
+  }
 
   // Se la parola è stata indovinata, mostra un Toast di successo
   if (allCorrect) {
@@ -74,17 +114,24 @@ function onSubmit(e, wordIndex) {
       duration: 5000,
       gravity: "top",
       position: "center",
+      className: "toastify-center",
       backgroundColor: "linear-gradient(to right, #56ab2f, #a8e063)", // Colore verde di successo
       stopOnFocus: true,
     }).showToast();
   } else {
+    let isLastAttempt = wordIndex === wordInputArray.length - 1;
+
     Toastify({
-      text: "Non hai indovinato la parola!",
-      duration: 5000,
+      text: isLastAttempt
+        ? `Mi dispiace, non hai indovinato la parola! Hai perso! La parola era "${parola.toUpperCase()}".`
+        : "Non hai indovinato la parola! Riprova!",
+      duration: isLastAttempt ? 10000 : 1000,
       gravity: "top",
       position: "center",
-      backgroundColor:
-        "linear-gradient(to right,rgb(104, 26, 26),rgb(122, 95, 90))", // Colore verde di successo
+      className: "toastify-center",
+      backgroundColor: isLastAttempt
+        ? "linear-gradient(to right, #ff416c, #ff4b2b)" // rosso acceso per la sconfitta
+        : "linear-gradient(to right,rgb(104, 26, 26),rgb(122, 95, 90))",
       stopOnFocus: true,
     }).showToast();
   }
@@ -100,6 +147,7 @@ function onSubmit(e, wordIndex) {
 }
 
 window.onload = () => {
+  document.getElementById("rigioca").style.display = "inline-block";
   wordInputArray[0][0].focus(); // Focalizza il primo campo al caricamento
 };
 
@@ -110,3 +158,23 @@ fetch("words.json")
     parola = data[Math.floor(Math.random() * data.length)].toLowerCase().trim();
     console.log("Parola da indovinare:", parola); // Per debug
   });
+function restartGame() {
+  // Svuota tutti gli input e resetta lo stile
+  for (let row of wordInputArray) {
+    for (let input of row) {
+      input.value = "";
+      input.style.backgroundColor = "white";
+      input.disabled = true;
+    }
+  }
+
+  // Riattiva la prima riga
+  for (let i = 0; i < wordInputArray[0].length; i++) {
+    wordInputArray[0][i].disabled = false;
+  }
+
+  wordInputArray[0][0].focus(); // Focalizza il primo input
+
+  // Ricarica la pagina per ottenere una nuova parola
+  location.reload();
+}

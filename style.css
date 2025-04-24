@@ -22,6 +22,28 @@ body {
   justify-content: center;
   align-items: center;
 }
+.rigioca {
+  display: none;
+  margin-top: 24px;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: rgb(0, 0, 0);
+  color: rgb(122, 216, 191);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.toastify-center {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15vh;
+  left: 0;
+  right: 0;
+  max-width: fit-content;
+  max-width: -moz-fit-content;
+}
 input {
   height: 80px;
   font-size: 5rem;
@@ -35,6 +57,9 @@ button {
 
 /* Smartphone (fino a 600px) */
 @media (max-width: 600px) {
+  .toastify-center {
+    margin-top: 6vh;
+  }
   .wordle {
     font-size: 28px;
   }
@@ -42,6 +67,7 @@ button {
   .parent {
     gap: 10px;
     padding: 10px;
+    margin-top: -20vh;
   }
 
   input {
@@ -53,6 +79,9 @@ button {
 
 /* Smartphone (fino a 1080px) */
 @media (max-width: 600px) {
+  .toastify-center {
+    margin-top: 6vh;
+  }
   .wordle {
     font-size: 32px;
   }
@@ -60,6 +89,7 @@ button {
   .parent {
     gap: 10px;
     padding: 10px;
+    margin-top: -20vh;
   }
 
   input {
@@ -71,6 +101,10 @@ button {
 
 /* Tablet (601px - 900px) */
 @media (max-width: 900px) and (min-width: 601px) {
+  .toastify-center {
+    font-size: 40px;
+    margin-top: 15vh;
+  }
   .wordle {
     font-size: 40px;
   }
