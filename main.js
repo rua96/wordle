@@ -136,13 +136,15 @@ function onSubmit(e, wordIndex) {
     }).showToast();
   }
 
-  // Passa alla riga successiva se esiste
-  let nextLine = wordInputArray[wordIndex + 1];
-  if (nextLine) {
-    for (let i = 0; i < nextLine.length; i++) {
-      nextLine[i].disabled = false;
+  // Passa alla riga successiva se l'utente non ha indovinato
+  if (!allCorrect) {
+    let nextLine = wordInputArray[wordIndex + 1];
+    if (nextLine) {
+      for (let i = 0; i < nextLine.length; i++) {
+        nextLine[i].disabled = false;
+      }
+      nextLine[0].focus(); // Focus sul primo campo della riga successiva
     }
-    nextLine[0].focus(); // Focus sul primo campo della riga successiva
   }
 }
 
